@@ -1,0 +1,19 @@
+<form method="POST" action="{% url search %}">
+{% csrf_token %}
+ユーザ名:<input value="{{search_value}}" size="10" type="text" name="user_name" id="user_name"/><br />
+<input type="submit" value="検索!"/>
+</form>
+
+{% if timelines %}
+タイムラインだよ!<br />
+<table border="1">
+<tr>
+<td>名前</td><td>つぶやき</td><td>時間</td>
+</tr>
+{% for timeline in timelines %}
+<tr>
+<td>{{timeline.name}}</td><td>{{timeline.tweet}}</td><td>{{timeline.created_at}}</td>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
